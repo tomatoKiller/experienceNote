@@ -1,0 +1,11 @@
+sudo apt-get install apache2
+
+/etc/apache2/apache2.conf:
+该文件为全局配置文件，它将其他的一些用户配置文件包含进来。
+在其中可以设置 
+①连接超时时间
+②KeepAlive 的相关设置
+③错误日志的存放地点
+④/ /usr/share/ /var/www/ 目录的权限设置
+⑤.htaccess 和 .htpasswd文件设置
+⑥自定义日志格式

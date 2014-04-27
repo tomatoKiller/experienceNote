@@ -1,0 +1,14 @@
+使用Chromeium浏览器
+如果手动导入证书出错，可采用如下方式：
+
+一，上google plus, twitter等网站遇到“the site's security certificate is not trusted ****”此类错误提示。其实这是因为goagent证书没有导入到系统的证书库中，而Google Chrome浏览器本身无法导入证书（这与Firefox不同），它使用系统的证书库。为此，需要我们手动导入。
+    1，安装证书导入工具：
+       sudo apt-get install libnss3-tools
+    2, 将goAgent文件夹内的证书文件CA.crt导入(下面中括号内是证书的绝对路径，因人而异，注意)
+       certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "goagent" -i [/path/to/goagent/local/CA.crt]
+    之后重新打开G+等就没有提示证书错误了。
+二，google plus的图标显示不正常。据说原因是因为这些图像保存在googleusercontent.com域，需要重新设置host ip。
+     1，root下打开host文件：sudo gedit /etc/hosts
+     2，把以下内容添加到host文件：173.194.38.143 ssl.gstatic.com
+     3，在goagent添加新规则：*://gstatic.com/*
+     之后刷新下就OK啦～
